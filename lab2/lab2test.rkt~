@@ -1,0 +1,26 @@
+#lang typed/racket
+(require typed/test-engine/racket-tests)
+(require "../include/cs151-core.rkt")
+
+(: leap?(Integer -> Boolean))
+(define (leap? year)
+  (or
+   ((= (remainder year 400) 0) #t)
+   (= (remainder year 4) 0)
+   (cond
+     [(= (remainder year 100) 0) #f #t])))
+
+(check-expect leap? 2002) #f)
+(check-expect leap? 2020) #t)
+
+(: smart-date (Integer Integer Integer -> Date))
+  (define smart-date (Date-m Date-d Date-y)
+    (cond
+      [(or (< m 1) (> m 12)) (error "month out of range")]
+      (= m 1) (=m 2) (= m 3) (= m 4) (= m 5) (= m 6) (= m 7)
+      (=m 8) (= m 9) (= m 10) (= m 11) (= m 12) (< d 1)) (error "day out of range")
+      (and (=m 1 or 3 or 5 or 7 or 8 or 10 or 12) (> d 31) (error "day out of range"))
+      (and (= m 2) (> d 28) (error "day out of range")) ;; CHECK LEAP YEAR
+      (and (= m 4, 6, 9, 11) (> d 30) (error "day out of range"))))
+
+(check-error (smart-date (Date 99 2 2019)) "month out of range") 

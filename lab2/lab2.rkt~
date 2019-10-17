@@ -1,0 +1,56 @@
+#lang typed/racket
+(require typed/test-engine/racket-tests)
+(require "../include/cs151-core.rkt")
+
+(define-struct Date
+  ([m : Integer]
+   [d : Integer]
+   [y : Integer]))
+
+;; note: for the month, 1 means January, 2 means February, etc.
+
+(define-type Day
+  (U 'Su 'M 'Tu 'W 'Th 'F 'Sa))
+
+(: leap?(Integer -> Boolean))
+(define (leap? day)
+   ;whether or not a year is a leap year.
+   ;Leap years are not simply every fourth year.
+   ;a year is a leap year if it
+   ;is divisible by 4 and not divisible by 100,
+   ;or if it is divisible by 400.
+  (or
+   (and ((remainder day 4) 0) ((remainder day 100) _) #t #f)
+   ((remainder (day 400) 0) #t)
+
+   (check-expect leap? 2002) #f)
+  (check-expect leap? 2020) #t)
+
+(: smart-date (Integer Integer Integer -> Date))
+  (define smart-date (Date-m Date-d Date-y)
+    (cond
+      [(or (< m 1) (> m 12)) (error "month out of range")]
+      [(or (and (=m 1) (< d 1))
+           (and (=m 1) (>d 31)) (error "month out of range"))]
+      [(or (and (= m 2) (< d 1))
+           (and (=m 2) (> d 28)))])) ;;UNLESS LEAP YEAR
+       (else -1)
+
+(check-error (smart-date (Date 99 2 2019)) "month out of range")  
+
+  (: date=? (Date Date -> Boolean))
+  ;test whether two dates are exactly the same
+  (: date<? (Date Date -> Boolean))
+  ;test whether first occurs before the other
+
+  (: day-of-week (Date -> Day))
+ ; n = (y - 1900) + j + d + floor(y/4)
+(check expect (10 15 2019) 'Tu)
+
+(: yesterday (Date -> Day))
+  ;import day-of-week, add 1
+
+  (: tomorrow (Date -> Day))
+  (: add-days (Integer Date -> Date))
+
+  (test)
