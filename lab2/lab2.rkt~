@@ -157,7 +157,9 @@
 (check-expect (tomorrow (Date 1 15 2019)) (Date 1 16 2019))
 (check-expect (tomorrow (Date 2 28 2019)) (Date 3 1 2019))
 (check-expect (tomorrow (Date 2 28 2020)) (Date 2 29 2020))
+(check-expect (tomorrow (Date 2 29 2020)) (Date 3 1 2020))
 
+(tomorrow (Date 2 30 2020))
 
 (: add-days (Integer Date -> Date))
 (define (add-days add d1)
