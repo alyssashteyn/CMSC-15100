@@ -1,0 +1,64 @@
+;; CMSC 15100 Autumn 2019
+;; Lab 1 guideline
+
+;; graded work for alyssashteyn
+
+;; === correctness ===
+
+marginal-tax            8 / 8
+
+solar-panel-deduction   4 / 6
+-- wrong order of variables
+
+garden-deduction        6 / 6
+
+itemized                0 / 6
+-- failed to consider people = 0
+-- repeated code from solar and garden, should make function calls instead
+-- wrong order of variables
+
+standard                6 / 6
+
+should-itemize?         0 / 6
+-- failed to consider people = 0
+-- repeated code from solar and garden, should make function calls instead
+-- wrong order of variables
+
+tax-return              6 / 6
+
+
+;; === style ===
+
+;; code layout                        6 / 6
+
+;; identifiers are well named         6 / 6
+;; program decomposition (helpers)    6 / 6
+
+;; contracts (type ascriptions)       6 / 6
+;; well-written purposes              8 / 8
+;; adequate tests                     12 / 12
+
+;; clarity (clear logic)              8 / 8
+
+;; git used correctly                 4 / 4
+
+
+;; _total-score_                    68 / 100
+
+;; graded by Adela Deng
+
+
+=== Note: the scoring formula is given here.
+
+The following scoring formula has the effect of scaling style by
+correctness. This is so a student cannot, for example, write only one
+function out of six and earn full style points.
+
+Let c = correctness points.
+Let p = correctness percentage.
+Let s = style points.
+The total score is (c + p*s), rounded to the nearest integer.
+
+For example, if a student earns 32/64 correctness points and 24/36
+style points, the total score is 32 + 0.5 * 24 = 32 + 12 = 44.
+
